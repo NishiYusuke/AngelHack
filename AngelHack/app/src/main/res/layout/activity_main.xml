@@ -47,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:hint="ニックネーム"
-            android:text="Sako"/>
+            android:hint=""
+            android:text="sako@gmail.com"/>
 
         <EditText
             android:id="@+id/edittext_login_password"
