@@ -61,7 +61,7 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-        ((TextView) findViewById(R.id.toolbar_title_sub)).setText("Join us");
+        ((TextView) findViewById(R.id.toolbar_title_sub)).setText("Joinas");
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
