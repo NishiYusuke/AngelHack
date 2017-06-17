@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.arashi.angelhack">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_logo_stopatthisfinger"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -12,6 +17,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCCp9RZOFPHwufj-7CUr0tAs5f4oOvY6ms" />
+
 
         <activity
             android:name=".MainActivity"
@@ -23,9 +29,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EventMap"
-            android:parentActivityName=".MainActivity"
+        <activity
+            android:name=".EventMap"
             android:label="Join us"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateEvent"
+            android:label=""
+            android:parentActivityName=".EventMap"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ViewOtherEvent"
+            android:label=""
+            android:parentActivityName=".EventMap"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

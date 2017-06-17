@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:tint="#555555"
             android:gravity="center"
-            android:src="@drawable/app_logo_stopatthisfinger"/>
+            android:src="@drawable/alert_big"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

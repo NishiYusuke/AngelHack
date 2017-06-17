@@ -17,6 +17,12 @@
         <!-- Toolbar Title Color-->
         <item name="android:textColorPrimary">@color/color_red</item>
         <!-- Toolbar menu overflow icon color -->
-        <item name="android:textColorSecondary">#AAAAAA</item>
+        <item name="android:textColorSecondary">#888888</item>
     </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
 </resources>
