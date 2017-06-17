@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context="com.example.arashi.angelhack.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:tint="#555555"
+            android:gravity="center"
+            android:src="@drawable/app_logo_stopatthisfinger"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="Join us"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="40dp"
+            android:textColor="#555555"/>
+
+        <EditText
+            android:id="@+id/edittext_login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:hint="ニックネーム"/>
+
+        <EditText
+            android:id="@+id/edittext_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:inputType="textPassword"
+            android:hint="パスワード"/>
+
+
+        <Button
+            android:id="@+id/button_login_ok"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:background="@color/color_red"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="ログイン"/>
+
+        <TextView
+            android:id="@+id/button_newregister"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="#555555"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="新規登録"
+            android:gravity="center"
+            android:background="@null"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
