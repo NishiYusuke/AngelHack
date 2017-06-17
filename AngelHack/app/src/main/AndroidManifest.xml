@@ -18,7 +18,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCCp9RZOFPHwufj-7CUr0tAs5f4oOvY6ms" />
 
-
         <activity
             android:name=".MainActivity"
             android:label="Join us"
@@ -39,7 +38,22 @@
             android:label=""
             android:parentActivityName=".EventMap"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ViewOtherEvent"
+        <activity
+            android:name=".ViewOtherEvent"
+            android:label=""
+            android:parentActivityName=".EventMap"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyEventPage"
+            android:label=""
+            android:parentActivityName=".EventMap"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LikedEvent"
+            android:label=""
+            android:parentActivityName=".EventMap"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CommentPage"
             android:label=""
             android:parentActivityName=".EventMap"
             android:theme="@style/AppTheme.NoActionBar"/>

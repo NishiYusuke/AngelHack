@@ -27,6 +27,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -118,16 +119,16 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
         us.setMapToolbarEnabled(false);
 
         LatLng eve1 = new LatLng(34.705671, 135.492672);
-        mMap.addMarker(new MarkerOptions().position(eve1).title("路上ライブやるよー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "));
+        mMap.addMarker(new MarkerOptions().position(eve1).title("路上ライブやるよ！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "));
 
         LatLng eve2 = new LatLng(34.708211, 135.494424);
         mMap.addMarker(new MarkerOptions().position(eve2).title("飲み会やります！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "));
 
         LatLng eve3 = new LatLng(34.707671, 135.492672);
-        mMap.addMarker(new MarkerOptions().position(eve3).title("路上ライブやるよー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "));
+        mMap.addMarker(new MarkerOptions().position(eve3).title("路上ライブやるよー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
         LatLng eve4 = new LatLng(34.708211, 135.490424);
-        mMap.addMarker(new MarkerOptions().position(eve4).title("飲み会やります！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "));
+        mMap.addMarker(new MarkerOptions().position(eve4).title("飲み会やりますー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eve4, 15));
 
 
@@ -151,8 +152,17 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
     //Makerがクリックされたときのイベント
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getApplicationContext(), ViewOtherEvent.class);
-        startActivity(intent);
+        if(marker.getTitle().equals("路上ライブやるよー！")){
+            Intent intent = new Intent(getApplicationContext(), MyEventPage.class);
+            startActivity(intent);
+        }else if(marker.getTitle().equals("飲み会やりますー！")){
+            Intent intent = new Intent(getApplicationContext(), LikedEvent.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(getApplicationContext(), ViewOtherEvent.class);
+            startActivity(intent);
+        }
+
     }
 
     // 位置情報許可の確認

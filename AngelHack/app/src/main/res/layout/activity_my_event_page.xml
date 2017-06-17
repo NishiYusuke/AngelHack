@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.arashi.angelhack.ViewOtherEvent">
+    tools:context="com.example.arashi.angelhack.MyEventPage">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -90,7 +90,6 @@
                         android:text="おおひら"/>
 
                 </LinearLayout>
-
 
                 <TextView
                     android:layout_width="match_parent"
@@ -198,6 +197,21 @@
                     android:text="大阪府大阪市北区大深町１−１"/>
 
 
+                <Button
+                    android:id="@+id/button_login_ok"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:background="@color/color_red"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="削除する"/>
+
 
             </LinearLayout>
         </ScrollView>
@@ -207,26 +221,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/button_createevent_ok"
+                android:id="@+id/button_comment"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:background="@color/color_red"
+                android:textColor="#555555"
+                android:background="#CCCCCC"
                 android:textAllCaps="false"
                 android:layout_gravity="center"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:text="いいね"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:background="@color/color_blue"
-                android:textAllCaps="false"
-                android:layout_gravity="center"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:text="興味なし"/>
+
+                android:text="コメント"/>
         </LinearLayout>
     </LinearLayout>
 

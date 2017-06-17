@@ -57,7 +57,6 @@ public class CreateEvent extends AppCompatActivity implements OnMapReadyCallback
                 EditText name = (EditText)findViewById(R.id.edittext_searchidokeido);
                 List<Address> addresses = null;
                 try {
-                    // 二つ目の引数に入れた数だけ結果をとってくる、2つなら自動でマーカーを2つ置く
                     addresses = geocoder.getFromLocationName(name.getText().toString(),1);
                 } catch (IOException e) {
                     e.printStackTrace();

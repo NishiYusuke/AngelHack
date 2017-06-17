@@ -12,6 +12,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"/>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -28,8 +33,13 @@
             android:text="Join us"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:textColor="#555555"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"/>
 
         <EditText
             android:id="@+id/edittext_login_username"
@@ -37,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:hint="ニックネーム"/>
+            android:hint="ニックネーム"
+            android:text="Sako"/>
 
         <EditText
             android:id="@+id/edittext_login_password"
@@ -46,7 +57,8 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:inputType="textPassword"
-            android:hint="パスワード"/>
+            android:hint="パスワード"
+            android:text="11111111111"/>
 
 
         <Button
@@ -76,6 +88,11 @@
             android:background="@null"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"/>
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

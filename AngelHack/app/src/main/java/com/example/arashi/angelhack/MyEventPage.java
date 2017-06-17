@@ -9,23 +9,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ViewOtherEvent extends AppCompatActivity {
+public class MyEventPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_other_event);
+        setContentView(R.layout.activity_my_event_page);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-        ((TextView) findViewById(R.id.toolbar_title_sub)).setText("イベント");
+        ((TextView) findViewById(R.id.toolbar_title_sub)).setText("マイイベント");
 
         //return button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
+        Button commentButton = (Button) findViewById(R.id.button_comment);
+        commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CommentPage.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     //return button
     @Override
