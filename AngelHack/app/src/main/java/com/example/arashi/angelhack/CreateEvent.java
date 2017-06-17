@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,7 +49,7 @@ public class CreateEvent extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-        Button searchButton = (Button) findViewById(R.id.button_searchidokeido);
+        ImageButton searchButton = (ImageButton) findViewById(R.id.button_searchidokeido);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
