@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,30 +41,86 @@ public class MainActivity extends AppCompatActivity {
                 EditText username = (EditText) findViewById(R.id.edittext_login_username);
                 EditText pass = (EditText) findViewById(R.id.edittext_login_password);
 
+                loginUserWithEmailAndPassword(username.getText().toString(),pass.getText().toString());
+            }
+        });
+
+        TextView newRegisterButton = (TextView) findViewById(R.id.button_newregister);
+        newRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                Intent i = new Intent(getApplicationContext(), EventMap.class);
+//                startActivity(i);
+
+
+                EditText username = (EditText) findViewById(R.id.edittext_login_username);
+                EditText pass = (EditText) findViewById(R.id.edittext_login_password);
+
                 createUserWithEmailAndPassword(username.getText().toString(),pass.getText().toString());
             }
         });
     }
 
     private void createUserWithEmailAndPassword(String email, String password) {
+        // emailとパスワードでアカウント作成
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Log.d("Login#onComplete", task.getException().toString());
+                    // アカウント作成あるいはログイン失敗時にはメッセージを表示する
+                    Toast.makeText(MainActivity.this, "作成失敗",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    Log.d("onComplete", "アカウント作成及びログインに成功しました。");
+                    Intent intent = new Intent(getApplicationContext(), EventMap.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+//        // emailとパスワードでログイン
+//        mAuth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                        if (!task.isSuccessful()) {
+//                            Log.d("Login#onComplete", task.getException().toString());
+//                            // ログイン失敗
+//                            Toast.makeText(MainActivity.this, "ログイン失敗",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Log.d("Login#onComplete", "ログインに成功しました。");
+//                            Intent i = new Intent(getApplicationContext(), EventMap.class);
+//                            startActivity(i);
+//                        }
+//                    }
+//                });
+    }
+
+    private void loginUserWithEmailAndPassword(String email, String password) {
 //        // emailとパスワードでアカウント作成
 //        mAuth.createUserWithEmailAndPassword(email, password)
 //                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (!task.isSuccessful()) {
-//                    Log.d("Login#onComplete", task.getException().toString());
-//                    // アカウント作成あるいはログイン失敗時にはメッセージを表示する
-//                    Toast.makeText(MainActivity.this, "作成失敗",
-//                            Toast.LENGTH_SHORT).show();
-//                }else{
-//                    Log.d("onComplete", "アカウント作成及びログインに成功しました。");
-//                    Intent intent = new Intent(getApplicationContext(), EventMap.class);
-//                    startActivity(intent);
-//                }
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.d("Login#onComplete", task.getException().toString());
+//                            // アカウント作成あるいはログイン失敗時にはメッセージを表示する
+//                            Toast.makeText(MainActivity.this, "作成失敗",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Log.d("onComplete", "アカウント作成及びログインに成功しました。");
+//                            Intent intent = new Intent(getApplicationContext(), EventMap.class);
+//                            startActivity(intent);
+//                        }
 //
-//            }
-//        });
+//                    }
+//                });
 
         // emailとパスワードでログイン
         mAuth.signInWithEmailAndPassword(email, password)

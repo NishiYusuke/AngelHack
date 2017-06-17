@@ -39,7 +39,6 @@ import static com.example.arashi.angelhack.R.id.map;
 public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleApiClient.ConnectionCallbacks {
 
     private final int REQUEST_PERMISSION = 10;
-    private boolean firstlocationf = true;
 
     //LocationManagerの変わり、これがなくてもGoogleApiClientとsetMyLocationEnabled(true)を使えば現在位置の表示はできるが情報の取得はできないし、精度がわるい
     private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
@@ -105,6 +104,7 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
     public String[] eventOwner = {"おおひら","さこ","おおひら"};
     public String[] eventStartTime = {"15:00","15:00","15:30"};
     public String[] eventStartEnd = {"16:00","17:00","20:30"};
+    public String[] eventStatus = {};
 
 
     @Override
@@ -155,7 +155,7 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
 //
 //        LatLng eve4 = new LatLng(34.708211, 135.490424);
 //        mMap.addMarker(new MarkerOptions().position(eve4).title("飲み会やりますー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eve4, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLatLng[0], 15));
 
 
         // Set a listener for info window events.
@@ -173,6 +173,18 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
             return;
         }
         mMap.setMyLocationEnabled(true);
+    }
+
+
+    private boolean firstlocationf = true;
+    @Override
+    public void onLocationChanged(Location location){
+    //最初だけ現在地のところをズームする
+        if(firstlocationf == true){
+            LatLng kobe = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kobe, 10));
+            firstlocationf = false;
+        }
     }
 
     //Makerがクリックされたときのイベント
@@ -239,11 +251,6 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
 
     @Override
     public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
 
     }
 
