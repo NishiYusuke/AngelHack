@@ -35,7 +35,7 @@ public class ViewOtherEvent extends AppCompatActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventMap.eventStatus.set(selectedm,"mine");
+                EventMap.eventStatus.set(selectedm,"liked");
                 Intent intent = new Intent(getApplicationContext(),EventMap.class);
                 startActivity(intent);
             }
