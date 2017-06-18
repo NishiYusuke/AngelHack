@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="イベント名"
+                android:hint="二次会やります！"
                 android:padding="10dp" />
             <EditText
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="イベントの内容"
+                android:hint="グランフロントで二次会やります。\n よかったら来てください！"
                 android:padding="10dp" />
 
             <TextView
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="00:00" />
+                    android:hint="19:00" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="00:00" />
+                    android:hint="24:00" />
             </LinearLayout>
 
             <TextView
@@ -145,7 +145,7 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="大阪府大阪市北区大深町１−１"/>
+                    android:text="大阪府大阪市北区大深町３−１"/>
 
 
                 <ImageButton

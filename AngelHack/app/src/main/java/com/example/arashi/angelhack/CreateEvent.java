@@ -66,6 +66,7 @@ public class CreateEvent extends AppCompatActivity implements OnMapReadyCallback
                         MarkerOptions opts = new MarkerOptions()
                                 .position(new LatLng(loc.getLatitude(), loc.getLongitude()))
                                 .title(loc.getAddressLine(0));
+//                        EventMap.eventLatLng(new LatLng(loc.getLatitude(), loc.getLongitude()));
                         mMap.addMarker(opts);
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loc.getLatitude(), loc.getLongitude()), 10));
                     }
@@ -77,7 +78,7 @@ public class CreateEvent extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng kobe = new LatLng(34.705671, 135.492672);
+        LatLng kobe = new LatLng(34.705912, 135.494472);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kobe, 10));
     }
 

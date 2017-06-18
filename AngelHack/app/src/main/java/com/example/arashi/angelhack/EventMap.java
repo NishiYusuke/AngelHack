@@ -34,6 +34,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static com.example.arashi.angelhack.R.id.map;
 
 public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleApiClient.ConnectionCallbacks {
@@ -97,14 +100,16 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
 
     }
 
-    public LatLng[] eventLatLng = {new LatLng(34.70705, 135.485783),new LatLng(34.702484, 135.493174), new LatLng(34.702564, 135.495757)};
-    public String[] eventLocationName = {"大阪府大阪市北区大淀北１丁目６−５","大阪府大阪市北区大深町２−２５","大阪府大阪市北区梅田３丁目１−１ "};
-    public String[] eventTitle = {"路上ライブやるよ！","路上ライブやるよ！","路上ライブやるよ！"};
-    public String[] eventSnipet = {"15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ","15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ","15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "};
-    public String[] eventOwner = {"おおひら","さこ","おおひら"};
-    public String[] eventStartTime = {"15:00","15:00","15:30"};
-    public String[] eventStartEnd = {"16:00","17:00","20:30"};
-    public String[] eventStatus = {};
+    LatLng[] eventLatLngl = {new LatLng(34.70705, 135.485783),new LatLng(34.702484, 135.493174), new LatLng(34.702564, 135.495757), new LatLng(34.70557, 135.500782)};
+    String[] eventLocationNamel = {"大阪府大阪市北区大淀北１丁目６−５","大阪府大阪市北区大深町２−２５","大阪府大阪市北区梅田３丁目１−１ ","大阪府大阪市北区茶屋町１−1−45"};
+    String[] eventTitlel = {"路上ライブやるよ！","路上ライブやるよ！","路上ライブやるよ！","路上ライブやるよ！"};
+    String[] eventSnipetl = {"15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ","15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "
+            ,"15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ","15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "};
+    String[] eventOwnerl = {"おおひら","さこ","おおひら","さこ"};
+    String[] eventStartTimel = {"15:00","15:00","15:30","17:00"};
+    String[] eventStartEndl = {"16:00","17:00","20:30","21:00"};
+    String[] eventStatusl = {"nolook","nolook","liked","mine"};
+
 
 
     @Override
@@ -143,19 +148,16 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
 
         for (int i=0; i<eventTitle.length;i++){
             LatLng eve = eventLatLng[i];
-            mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]));
+            if(eventStatus[i].equals("nolook")){
+                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]));
+            }else if(eventStatus[i].equals("liked")){
+                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+            }else if(eventStatus[i].equals("mine")){
+                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            }
         }
-//        LatLng eve1 = new LatLng(34.705671, 135.492672);
-//
-//        LatLng eve2 = new LatLng(34.708211, 135.494424);
-//        mMap.addMarker(new MarkerOptions().position(eve2).title("飲み会やります！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "));
-//
-//        LatLng eve3 = new LatLng(34.707671, 135.492672);
-//        mMap.addMarker(new MarkerOptions().position(eve3).title("路上ライブやるよー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-//
-//        LatLng eve4 = new LatLng(34.708211, 135.490424);
-//        mMap.addMarker(new MarkerOptions().position(eve4).title("飲み会やりますー！").snippet("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLatLng[0], 15));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.705912, 135.494472), 15));
 
 
         // Set a listener for info window events.
@@ -187,19 +189,21 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
         }
     }
 
-    //Makerがクリックされたときのイベント
+    //infowindowがクリックされたときのイベント
     @Override
     public void onInfoWindowClick(Marker marker) {
-        if(marker.getTitle().equals("路上ライブやるよー！")){
+        if(eventStatus[Integer.parseInt(marker.getId().substring(1))].equals("mine")){
             Intent intent = new Intent(getApplicationContext(), MyEventPage.class);
             startActivity(intent);
-        }else if(marker.getTitle().equals("飲み会やりますー！")){
+        }else if(eventStatus[Integer.parseInt(marker.getId().substring(1))].equals("liked")){
             Intent intent = new Intent(getApplicationContext(), LikedEvent.class);
             startActivity(intent);
         }else{
             Intent intent = new Intent(getApplicationContext(), ViewOtherEvent.class);
             startActivity(intent);
         }
+
+        Toast.makeText(getApplicationContext(), marker.getId().substring(1), Toast.LENGTH_LONG).show();
 
     }
 
