@@ -1,7 +1,13 @@
 package com.example.arashi.angelhack;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,10 +15,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,8 +106,35 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
             }
         });
 
+        ImageButton alertButton = (ImageButton) findViewById(R.id.button_alert);
+        alertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventMap.eventLatLng.add(new LatLng(34.705345,135.494643));
+                EventMap.eventLocationName.add("大阪府大阪市北区大深町３−１");
+                EventMap.eventTitle.add("二次会やります！");
+                EventMap.eventSnipet.add("グランフロントで二次会やります。\n よかったら来てください！");
+                EventMap.eventStartTime.add("15:00");
+                EventMap.eventStartTime.add("17:00");
+                EventMap.eventStatus.add("nolook");
+                EventMap.eventOwner.add("おおひら");
+                sendNotification();
+                reload();
+            }
+        });
+
 
     }
+    public void reload() {
+        Intent intent = getIntent();
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+    }
+
 
     public static ArrayList<LatLng> eventLatLng = new ArrayList<LatLng>(){
         {
@@ -260,7 +295,6 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
         intent.putExtra(EXTRA_SELECTED_MARKER, marker.getId().substring(1));
         startActivity(intent);
 
-        Toast.makeText(getApplicationContext(), marker.getId().substring(1), Toast.LENGTH_LONG).show();
 
     }
 
@@ -318,5 +352,44 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    //パラメータの設定、他のidとかぶらなければなんでもいい
+    private int REQUEST_CODE_MAIN_ACTIVITY = 1;
+    private int NOTIFICATION_CLICK = 2;
+
+    //通知
+    private void sendNotification() {
+        Intent intent = new Intent(EventMap.this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(
+                EventMap.this, REQUEST_CODE_MAIN_ACTIVITY, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //　iconはdrawlファイルの下に置く
+        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.app_logo_stopatthisfinger);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                getApplicationContext());
+        builder.setContentIntent(contentIntent);
+        // ステータスバーに表示されるテキスト
+        builder.setTicker("イベントが追加されました");
+        // アイコン
+        builder.setSmallIcon(R.drawable.app_logo_stopatthisfinger);
+        // 表示されるタイトル
+        builder.setContentTitle("イベントが追加されました");
+        // 表示されるサブタイトル
+        builder.setContentText("おおひらさんが荒らしいイベント「二次会やります！」を追加しました。");
+        // 表示されるアイコン
+        builder.setLargeIcon(largeIcon);
+        // 通知するタイミング
+        builder.setWhen(System.currentTimeMillis());
+        // 通知時の音・バイブ・ライト
+        builder.setDefaults(Notification.DEFAULT_SOUND
+                | Notification.DEFAULT_VIBRATE
+                | Notification.DEFAULT_LIGHTS);
+        // タップするとキャンセル
+        builder.setAutoCancel(true);
+        // NotificationManagerを取得
+        NotificationManager manager = (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
+        // 通知
+        manager.notify(NOTIFICATION_CLICK, builder.build());
     }
 }

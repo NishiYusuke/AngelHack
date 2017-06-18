@@ -49,8 +49,7 @@
                 android:src="@drawable/alert"
                 android:tint="#555555"
                 android:background="#FFFFFF"
-                android:layout_gravity="right"
-                android:foreground="?android:attr/selectableItemBackground"/>
+                android:layout_gravity="right"/>
 
 
 

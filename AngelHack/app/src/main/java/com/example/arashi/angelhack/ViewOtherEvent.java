@@ -10,9 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
-public class ViewOtherEvent extends AppCompatActivity {
+import static com.example.arashi.angelhack.R.id.map;
+
+public class ViewOtherEvent extends AppCompatActivity implements OnMapReadyCallback {
+
+    GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,10 @@ public class ViewOtherEvent extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        MapFragment mapFragment = (MapFragment)getFragmentManager().findFragmentById(map);
+        mapFragment.getMapAsync(this);
+
 
         Button notlikeButton = (Button) findViewById(R.id.notlikebutton);
         notlikeButton.setOnClickListener(new View.OnClickListener() {
@@ -77,5 +89,11 @@ public class ViewOtherEvent extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.705912, 135.494472), 15));
     }
 }

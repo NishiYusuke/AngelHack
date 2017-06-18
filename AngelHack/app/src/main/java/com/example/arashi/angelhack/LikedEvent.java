@@ -9,7 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LikedEvent extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+
+import static com.example.arashi.angelhack.R.id.map;
+
+public class LikedEvent extends AppCompatActivity implements OnMapReadyCallback {
+
+    GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +29,9 @@ public class LikedEvent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         ((TextView) findViewById(R.id.toolbar_title_sub)).setText("いいねしたイベント");
+
+        MapFragment mapFragment = (MapFragment)getFragmentManager().findFragmentById(map);
+        mapFragment.getMapAsync(this);
 
         //return button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -51,5 +64,11 @@ public class LikedEvent extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.705912, 135.494472), 15));
     }
 }
