@@ -58,18 +58,20 @@
                 android:textColor="@color/color_green" />
 
             <EditText
+                android:id="@+id/eventtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="二次会やります！"
+                android:text="二次会やります！"
                 android:padding="10dp" />
             <EditText
+                android:id="@+id/eventnaiyou"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="グランフロントで二次会やります。\n よかったら来てください！"
+                android:text="グランフロントで二次会やります。\n よかったら来てください！"
                 android:padding="10dp" />
 
             <TextView
@@ -92,10 +94,11 @@
                 android:padding="10dp">
 
                 <EditText
+                    android:id="@+id/starttime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="19:00" />
+                    android:text="15:00" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -106,10 +109,11 @@
                     android:textSize="25dp" />
 
                 <EditText
+                    android:id="@+id/endtime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="24:00" />
+                    android:text="17:00" />
             </LinearLayout>
 
             <TextView

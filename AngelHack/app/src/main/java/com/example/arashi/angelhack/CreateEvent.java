@@ -1,5 +1,6 @@
 package com.example.arashi.angelhack;
 
+import android.content.Intent;
 import android.location.Geocoder;
 import android.location.Address;
 import android.support.v4.app.FragmentActivity;
@@ -66,11 +67,31 @@ public class CreateEvent extends AppCompatActivity implements OnMapReadyCallback
                         MarkerOptions opts = new MarkerOptions()
                                 .position(new LatLng(loc.getLatitude(), loc.getLongitude()))
                                 .title(loc.getAddressLine(0));
-//                        EventMap.eventLatLng(new LatLng(loc.getLatitude(), loc.getLongitude()));
+                        EventMap.eventLatLng.add(new LatLng(loc.getLatitude(), loc.getLongitude()));
+                        EditText basyo = (EditText)findViewById(R.id.edittext_searchidokeido);
+                        EventMap.eventLocationName.add(basyo.getText().toString());
+                        EditText title = (EditText)findViewById(R.id.eventtitle);
+                        EventMap.eventTitle.add(title.getText().toString());
+                        EditText naiyou = (EditText)findViewById(R.id.eventnaiyou);
+                        EventMap.eventSnipet.add(naiyou.getText().toString());
+                        EditText stime = (EditText)findViewById(R.id.starttime);
+                        EventMap.eventStartTime.add(stime.getText().toString());
+                        EditText etime = (EditText)findViewById(R.id.endtime);
+                        EventMap.eventStartTime.add(etime.getText().toString());
+                        EventMap.eventStatus.add("mine");
                         mMap.addMarker(opts);
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loc.getLatitude(), loc.getLongitude()), 10));
                     }
                 }
+            }
+        });
+
+        Button okButton = (Button) findViewById(R.id.button_createevent_ok);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), EventMap.class);
+                startActivity(i);
             }
         });
     }

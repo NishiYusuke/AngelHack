@@ -32,6 +32,7 @@ public class LikedEvent extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
 

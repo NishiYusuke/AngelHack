@@ -243,19 +243,22 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
         }
     }
 
+    public final static String EXTRA_SELECTED_MARKER = "com.example.arashi.angelhack.selected_marker";
+
     //infowindowがクリックされたときのイベント
     @Override
     public void onInfoWindowClick(Marker marker) {
+        Intent intent;
         if(eventStatus.get(Integer.parseInt(marker.getId().substring(1))).equals("mine")){
-            Intent intent = new Intent(getApplicationContext(), MyEventPage.class);
-            startActivity(intent);
+            intent = new Intent(getApplicationContext(), MyEventPage.class);
+
         }else if(eventStatus.get(Integer.parseInt(marker.getId().substring(1))).equals("liked")){
-            Intent intent = new Intent(getApplicationContext(), LikedEvent.class);
-            startActivity(intent);
+            intent = new Intent(getApplicationContext(), LikedEvent.class);
         }else{
-            Intent intent = new Intent(getApplicationContext(), ViewOtherEvent.class);
-            startActivity(intent);
+            intent = new Intent(getApplicationContext(), ViewOtherEvent.class);
         }
+        intent.putExtra(EXTRA_SELECTED_MARKER, marker.getId().substring(1));
+        startActivity(intent);
 
         Toast.makeText(getApplicationContext(), marker.getId().substring(1), Toast.LENGTH_LONG).show();
 

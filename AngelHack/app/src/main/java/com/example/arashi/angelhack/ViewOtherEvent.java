@@ -7,7 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class ViewOtherEvent extends AppCompatActivity {
 
@@ -20,9 +23,32 @@ public class ViewOtherEvent extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ((TextView) findViewById(R.id.toolbar_title_sub)).setText("イベント");
 
+        Intent intent = getIntent();
+        final int selectedm = Integer.parseInt(intent.getStringExtra(EventMap.EXTRA_SELECTED_MARKER));
+
+
         //return button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        Button likeButton = (Button) findViewById(R.id.likebutton);
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventMap.eventStatus.set(selectedm,"mine");
+                Intent intent = new Intent(getApplicationContext(),EventMap.class);
+                startActivity(intent);
+            }
+        });
+
+        Button notlikeButton = (Button) findViewById(R.id.notlikebutton);
+        notlikeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CommentPage.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

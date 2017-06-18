@@ -207,7 +207,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/button_createevent_ok"
+                android:id="@+id/likebutton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -218,6 +218,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:text="いいね"/>
             <Button
+                android:id="@+id/notlikebutton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

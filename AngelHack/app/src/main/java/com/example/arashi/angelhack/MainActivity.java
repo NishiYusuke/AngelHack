@@ -34,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                Intent i = new Intent(getApplicationContext(), EventMap.class);
-//                startActivity(i);
+                Intent i = new Intent(getApplicationContext(), EventMap.class);
+                startActivity(i);
 
 
-                EditText username = (EditText) findViewById(R.id.edittext_login_username);
-                EditText pass = (EditText) findViewById(R.id.edittext_login_password);
-
-                loginUserWithEmailAndPassword(username.getText().toString(),pass.getText().toString());
+//                EditText username = (EditText) findViewById(R.id.edittext_login_username);
+//                EditText pass = (EditText) findViewById(R.id.edittext_login_password);
+//
+//                loginUserWithEmailAndPassword(username.getText().toString(),pass.getText().toString());
             }
         });
 
