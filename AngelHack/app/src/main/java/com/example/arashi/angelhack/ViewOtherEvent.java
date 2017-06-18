@@ -45,7 +45,16 @@ public class ViewOtherEvent extends AppCompatActivity {
         notlikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CommentPage.class);
+                EventMap.eventStatus.remove(selectedm);
+                EventMap.eventLatLng.remove(selectedm);
+                EventMap.eventLocationName.remove(selectedm);
+                EventMap.eventStartTime.remove(selectedm);
+                EventMap.eventEndTime.remove(selectedm);
+                EventMap.eventOwner.remove(selectedm);
+                EventMap.eventTitle.remove(selectedm);
+                EventMap.eventSnipet.remove(selectedm);
+
+                Intent intent = new Intent(getApplicationContext(),EventMap.class);
                 startActivity(intent);
             }
         });

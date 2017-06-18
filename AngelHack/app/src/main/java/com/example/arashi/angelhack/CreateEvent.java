@@ -79,6 +79,7 @@ public class CreateEvent extends AppCompatActivity implements OnMapReadyCallback
                         EditText etime = (EditText)findViewById(R.id.endtime);
                         EventMap.eventStartTime.add(etime.getText().toString());
                         EventMap.eventStatus.add("mine");
+                        EventMap.eventOwner.add("おおひら");
                         mMap.addMarker(opts);
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loc.getLatitude(), loc.getLongitude()), 10));
                     }

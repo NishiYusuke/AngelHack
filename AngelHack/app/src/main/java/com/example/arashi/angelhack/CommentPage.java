@@ -45,9 +45,9 @@ public class CommentPage extends AppCompatActivity {
                 EditText edittext = (EditText) findViewById(R.id.edittext_comment);
                 String comment = edittext.getText().toString();
                 if (!comment.equals("")) {
-                    CommentAdapter.nameArray.add(0, "yoshiki");
+                    CommentAdapter.nameArray.add(0, "さこ");
                     CommentAdapter.commentArray.add(0, comment);
-                    CommentAdapter.imageArray.add(0, R.drawable.tenmoku);
+                    CommentAdapter.imageArray.add(0, R.drawable.danbo);
                     listView.setAdapter(new CommentAdapter(getApplicationContext()));
                     edittext.setText("");
                 }
