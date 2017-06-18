@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.example.arashi.angelhack.R.id.add;
 import static com.example.arashi.angelhack.R.id.map;
 
 public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleApiClient.ConnectionCallbacks {
@@ -100,16 +101,69 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
 
     }
 
-    LatLng[] eventLatLngl = {new LatLng(34.70705, 135.485783),new LatLng(34.702484, 135.493174), new LatLng(34.702564, 135.495757), new LatLng(34.70557, 135.500782)};
-    String[] eventLocationNamel = {"大阪府大阪市北区大淀北１丁目６−５","大阪府大阪市北区大深町２−２５","大阪府大阪市北区梅田３丁目１−１ ","大阪府大阪市北区茶屋町１−1−45"};
-    String[] eventTitlel = {"路上ライブやるよ！","路上ライブやるよ！","路上ライブやるよ！","路上ライブやるよ！"};
-    String[] eventSnipetl = {"15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ","15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "
-            ,"15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ","15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 "};
-    String[] eventOwnerl = {"おおひら","さこ","おおひら","さこ"};
-    String[] eventStartTimel = {"15:00","15:00","15:30","17:00"};
-    String[] eventStartEndl = {"16:00","17:00","20:30","21:00"};
-    String[] eventStatusl = {"nolook","nolook","liked","mine"};
+    public static ArrayList<LatLng> eventLatLng = new ArrayList<LatLng>(){
+        {
+            add(new LatLng(34.70705, 135.485783));
+            add(new LatLng(34.702484, 135.493174));
+            add(new LatLng(34.702564, 135.495757));
+            add(new LatLng(34.70557, 135.500782));
+        }};
 
+    public static ArrayList<String> eventLocationName = new ArrayList<String>(){
+        {
+            add("大阪府大阪市北区大淀北１丁目６−５");
+            add("大阪府大阪市北区大深町２−２５");
+            add("大阪府大阪市北区梅田３丁目１−１ ");
+            add("大阪府大阪市北区茶屋町１−1−45");
+        }};
+    public static ArrayList<String> eventTitle = new ArrayList<String>(){
+        {
+            add("路上ライブやるよ！");
+            add("路上ライブやるよ！");
+            add("路上ライブやるよ！");
+            add("路上ライブやるよ！");
+        }};
+
+    public static ArrayList<String> eventSnipet = new ArrayList<String>(){
+        {
+            add("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ");
+            add("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ");
+            add("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ");
+            add("15:00からグランフロントの下でライブやります。\n よかったら見に来てください。 ");
+        }};
+
+    public static ArrayList<String> eventOwner = new ArrayList<String>(){
+        {
+            add("おおひら");
+            add("さこ");
+            add("おおひら");
+            add("さこ");
+        }};
+
+
+    public static ArrayList<String> eventStartTime = new ArrayList<String>(){
+        {
+            add("15:00");
+            add("16:00");
+            add("15:30");
+            add("19:00");
+        }};
+    public static ArrayList<String> eventEndTime = new ArrayList<String>(){
+        {
+            add("20:00");
+            add("20:00");
+            add("20:00");
+            add("20:00");
+        }};
+    public static ArrayList<String> eventStatus = new ArrayList<String>(){
+        {
+            add("nolook");
+            add("nolook");
+            add("liked");
+            add("mine");
+        }};
+
+//    public static ArrayList eventLatLng = new ArrayList(Arrays.asList(eventLatLng));
 
 
     @Override
@@ -146,14 +200,14 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
         UiSettings us = mMap.getUiSettings();
         us.setMapToolbarEnabled(false);
 
-        for (int i=0; i<eventTitle.length;i++){
-            LatLng eve = eventLatLng[i];
-            if(eventStatus[i].equals("nolook")){
-                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]));
-            }else if(eventStatus[i].equals("liked")){
-                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-            }else if(eventStatus[i].equals("mine")){
-                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle[i]).snippet(eventSnipet[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        for (int i=0; i<eventTitle.size();i++){
+            LatLng eve = eventLatLng.get(i);
+            if(eventStatus.get(i).equals("nolook")){
+                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle.get(i)).snippet(eventSnipet.get(i)));
+            }else if(eventStatus.get(i).equals("liked")){
+                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle.get(i)).snippet(eventSnipet.get(i)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+            }else if(eventStatus.get(i).equals("mine")){
+                mMap.addMarker(new MarkerOptions().position(eve).title(eventTitle.get(i)).snippet(eventSnipet.get(i)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             }
         }
 
@@ -192,10 +246,10 @@ public class EventMap extends AppCompatActivity implements GoogleMap.OnInfoWindo
     //infowindowがクリックされたときのイベント
     @Override
     public void onInfoWindowClick(Marker marker) {
-        if(eventStatus[Integer.parseInt(marker.getId().substring(1))].equals("mine")){
+        if(eventStatus.get(Integer.parseInt(marker.getId().substring(1))).equals("mine")){
             Intent intent = new Intent(getApplicationContext(), MyEventPage.class);
             startActivity(intent);
-        }else if(eventStatus[Integer.parseInt(marker.getId().substring(1))].equals("liked")){
+        }else if(eventStatus.get(Integer.parseInt(marker.getId().substring(1))).equals("liked")){
             Intent intent = new Intent(getApplicationContext(), LikedEvent.class);
             startActivity(intent);
         }else{
